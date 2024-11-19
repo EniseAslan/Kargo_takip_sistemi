@@ -1,0 +1,232 @@
+body{
+
+overflow: hidden;
+
+
+}
+
+.container{
+    margin: 20px;
+    padding: 50px;
+    width: 450px;
+    height: 580px;
+    background-color: #293775; /* Kutu rengi */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items:stretch;
+    border-radius: 10px; /* Köşeleri yuvarlat */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    text-align: center;
+    flex-direction: column;
+
+}
+.delivery-1{
+    background-color: #E5ECF6;
+    border-radius: 15px;
+    width: 400px;
+    margin-left:200px ;
+}
+.delivery-2{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    
+}
+
+
+.header {
+    
+    flex: 1;
+    background-color: #d9ecff;
+    color: #2e3b85;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+ 
+  .content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+  
+    margin-bottom: 10px;
+  }
+  
+  
+  .info-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+   
+    color: #2e3b85;
+    background-color: #c0c8d9;
+    justify-content: space-between;
+  }
+  
+
+  .cargo-icon img {
+    width: 100px;
+    height: 100px;
+   
+  }
+  
+  /* Kargo Bilgisi */
+  .cargo-info {
+    text-align:left;
+    overflow: auto; /* Taşan alanı kaydırılabilir yap */
+    word-wrap: break-word;
+    font-size: 15px;
+    margin-bottom: 10px;
+   
+  }
+  
+  /* Teslimat Bilgisi */
+  .delivery-info {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    background-color: #C0C8D9;
+    border-radius: 15px;
+  }
+  
+  .delivery-image{
+   
+    margin: 10px;
+  }
+  .delivery-image img {
+    width: 100px;
+    height: 100px;
+    background-color: #C0C8D9;
+    border-radius: 15px;
+    
+  }
+  
+  .delivery-date {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #C0C8D9;
+    border-radius: 15px;
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+  
+  /* Butonlar */
+
+  .buttons-section{
+   margin-right: 10vh;
+  }
+  .buttons-section button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+    width: 400px;
+    background-color: #738dfc;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+  }
+  
+  .buttons-section button img {
+    width: 20px; 
+    height: 20px; 
+  }
+  
+  .buttons-section button:hover {
+    background-color: #586081;
+  }
+  
+
+  .footer {
+    position: fixed;
+    bottom: 0; 
+   
+    width: 100%; 
+    background-color: #2e3b85; 
+    color: white; 
+    text-align: center;
+    padding: 10px 0; 
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .f-icon img {
+    width: 30px; 
+    height: 30px;
+    margin: 0 10px;
+  }
+
+  @media (max-width: 768px) {
+    /* Daha küçük ekranlar için düzenlemeler */
+    
+    .container {
+      width: 100%; 
+      height: auto; 
+      margin: 10px;
+      padding: 10px;
+    }
+  
+    .delivery-info{
+        margin: 10px;
+    }
+    .delivery-1 {
+      width: 100%; 
+      margin-left: 0; 
+    }
+  
+    .delivery-2 {
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+  
+    .buttons-section button {
+      width: 100%; 
+    }
+  
+    .footer {
+      font-size: 12px; 
+    }
+  }
+ 
+  
+  @media (max-width: 480px) {
+    /* Daha küçük mobil ekranlar için */
+    .cargo-icon img {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .cargo-info {
+      font-size: 12px; 
+    }
+  
+    .delivery-image img {
+      width: 70px;
+      height: 70px;
+    }
+  
+    .delivery-date {
+      font-size: 12px;
+    }
+  
+    .buttons-section button {
+      font-size: 12px; 
+      padding: 8px 15px; 
+    }
+  }
+  
