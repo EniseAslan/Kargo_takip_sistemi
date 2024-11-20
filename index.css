@@ -33,12 +33,27 @@ overflow: hidden;
     margin-bottom: 5px;
     
 }
+.column{
+
+  display: flex;
+  flex-direction: row;
+  
+}
 
 .header-info{
 
   height: auto; 
   text-align: left;
     padding-left: 10px;
+    color: #717588;
+}
+
+.header-info2{
+
+  text-align: left;
+  display: flex;
+  margin-left: 20vh;
+  
 }
 .header {
     
