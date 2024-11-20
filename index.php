@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-include("config.php");
+include("config.php"); //VERİTABANI BAĞLANTISINI SAĞLAYAN KOD
 
 $takipKodu = @$_GET["c"];
 
@@ -8,43 +8,55 @@ if(!$_GET) { //ANASAYFA OLMADIĞI İÇİN GEÇİCİ EKLENEN KOD
     header("Location: /index.php?c=1");
 }
 
+//KARGO BİLGİSİNİ VERİTABANINDAN ÇEKEN KOD
 $KargoBilgisi = $baglanti->prepare("select * from kargo_bilgisi where Takip_Kodu = ?");
 $KargoBilgisi->execute(array($takipKodu));
 $KargoBilgisiF = $KargoBilgisi->fetch();
+
+//KARGO TAKİP NUMARASI VERİTABANINDA EŞLEŞMEZSE ÇALIŞACAK KOD
 if(!$KargoBilgisiF) {
     echo "Kargo takip numarası hatalı"; //HATA SAYFASI OLMADIĞI İÇİN GEÇİCİ EKLENEN KOD
     die();
 }
 if($KargoBilgisiF) {
+    //KARGO BİLGİLERİNİN DEĞİŞKENLERE AKTARILDIĞI KISIM
     $Alici_ID = $KargoBilgisiF["Alici_ID"];
     $Gonderici_ID = $KargoBilgisiF["Gonderici_ID"];
     $KargoDurumu = $KargoBilgisiF["Durum_Bilgisi"];
     $TahminiTeslimTarihi = $KargoBilgisiF["Tahmini_Teslim_Tarihi"];
     
+    //ALICI BİLGİLERİNİ VERİTABANINDAN ÇEKEN KOD
     $AliciBilgisi = $baglanti->prepare("select * from alici where Alici_ID = ?");
     $AliciBilgisi->execute(array($Alici_ID));
     $AliciBilgisiF = $AliciBilgisi->fetch();
     if($AliciBilgisiF) {
+        //ALICI BİLGİLERİNİN DEĞİŞKENLERE AKTARILDIĞI KISIM
         $AliciAdSoyad = $AliciBilgisiF["Ad_Soyad"];
         $AliciAdres = $AliciBilgisiF["Adres"];
     }
-
+    
+    //GÖNDERİCİ BİLGİLERİNİ VERİTABANINDAN ÇEKEN KOD
     $GondericiBilgisi = $baglanti->prepare("select * from gonderici where Gonderici_ID = ?");
     $GondericiBilgisi->execute(array($Gonderici_ID));
     $GondericiBilgisiF = $GondericiBilgisi->fetch();
     if($GondericiBilgisiF) {
+        //GÖNDERİCİ BİLGİLERİNİN DEĞİŞKENE AKTARILDIĞI KISIM
         $GondericiAdSoyad = $GondericiBilgisiF["Gonderici_Ad_Soyad"];
     }
+
+    //RENK KODLARININ DEĞİŞKENLERE AKTARILDIĞI KISIM
     $AtlananAdimRengi = "#2e3b85";
     $GelinmeyenAdimRengi = "#717588";
     $BulunanAdimRengi = "#b5093d";
     
+    //KARGO DURUMLARIN RENKLERİNİN DEĞİŞKENLERE AKTARILDIĞI KISIM
     $Durum1Rengi = "color:".$GelinmeyenAdimRengi;
     $Durum2Rengi = "color:".$GelinmeyenAdimRengi;
     $Durum3Rengi = "color:".$GelinmeyenAdimRengi;
     $Durum4Rengi = "color:".$GelinmeyenAdimRengi;
     $Durum5Rengi = "color:".$GelinmeyenAdimRengi;
     
+    //KARGO DURUMLARININ RENKLERİNİN BELİRLENDİĞİ KOD
     switch($KargoDurumu){
         case 1:
             $Durum1Rengi = "color:".$BulunanAdimRengi;
