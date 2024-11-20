@@ -34,17 +34,23 @@ overflow: hidden;
     
 }
 
+.header-info{
 
+  height: auto; 
+  text-align: left;
+    padding-left: 10px;
+}
 .header {
     
-    flex: 1;
+    flex: 1px;
     background-color: #d9ecff;
     color: #2e3b85;
     border-radius: 15px;
-    padding: 20px;
+  
     text-align: center;
     font-weight: bold;
     margin-top: 5px;
+   
   }
   
  
