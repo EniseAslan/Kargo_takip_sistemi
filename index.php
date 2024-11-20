@@ -90,7 +90,7 @@ if($KargoBilgisiF) {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap demo</title>
+    <title>KargonBizde</title>
     <link rel="stylesheet" href="index.css" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -107,6 +107,7 @@ if($KargoBilgisiF) {
           <a class="navbar-brand" style="color: aliceblue" href="#"
             >KargonBizde</a
           >
+          <!--Header Kısmı-->
           <button
             class="navbar-toggler"
             type="button"
@@ -128,12 +129,14 @@ if($KargoBilgisiF) {
         </div>
       </nav>
     </div>
+     <!--Kargo adres bilgisi ve durum takibi containerı-->
     <div class="container">
       <div class="content">
         <div class=""><img src="img/resim.PNG" alt="resim" /></div>
         <div class="header">
           <p>KARGO ADRES BİLGİSİ VE GÖNDERİ DURUM TAKİBİ</p>
           <br />
+           <!--Kargonun teslim durumuna göre değişen renk-->
           <div class="column">
           <div class="header-info">
             <p style= <?php printf($Durum1Rengi) ?> >Kargo Firmasına Verildi</p>
@@ -143,6 +146,7 @@ if($KargoBilgisiF) {
             <p style= <?php printf($Durum5Rengi) ?> >Teslim Edildi</p>
             
           </div>
+           <!--Kargo adres bilgisi containerı-->
           <div class="header-info2">
             <p>Adres:</p>
             <p><?php printf($AliciAdres) ?></p>
@@ -156,7 +160,7 @@ if($KargoBilgisiF) {
             <div class="cargo-icon">
               <img src="img/Cargo.png" alt="Kargo İkonu" />
             </div>
-
+ <!--Kargo Bilgisi-->
             <div class="cargo-info">
               <p>
                 Alıcı Adı Soyadı: <?php printf($AliciAdSoyad) ?> <br />Kargo Takip Numarası: <?php printf($takipKodu) ?> <br />------------------<br />Satıcı
