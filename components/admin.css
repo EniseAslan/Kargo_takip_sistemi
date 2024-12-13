@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+
+}
+body{
+    display: grid;
+    height: 100%;
+    place-items: center;
+    background: #c1c2c8;
+}
+
+.header{
+    width: 100%;
+    position:sticky;
+    
+}
+.wrapper{
+    width: 380px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+   margin-top: 100px;
+}
+
+.wrapper .title{
+    line-height: 100px;
+    background: linear-gradient(-135deg,#2e3b85,#63698f);
+    color: aliceblue;
+    font-size: 35px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 15px 15px 0px 0px;
+
+
+}
+
+.wrapper form{
+    padding: 10px 30px 50px 30px;
+
+
+}
+.wrapper form .field{
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+}
+
+.wrapper form .field input{
+height: 100%;
+width: 100%;
+padding-left: 20px;
+border-radius: 25px;
+border: 1px solid lightgray;
+outline: none;
+transition: all 0.3s ease;
+font-size: 17px;
+}
+.wrapper form .field input:focus{
+    border-color: #63698f;
+}
+.wrapper form .field input:valid ~ label,
+.wrapper form .field input:focus ~ label{
+    top:0% ;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #63698f;
+    background: #fff;
+}
+
+.wrapper form .field input[type="submit"]{
+    background: linear-gradient(-135deg,#2e3b85,#63698f);
+    color: aliceblue;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    padding-left: none;
+    cursor: pointer;
+}
+.wrapper form .field input[type="submit"]:active{
+    transform: scale(0.95);
+}
+
+
+.wrapper form .field label{
+    position:absolute;
+    top: 50%;
+    left: 20px;
+    font-size: 17px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: #999;
+
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+  
+    width: 100%;
+    background-color: #2e3b85;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .f-icon img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+  }
+  
