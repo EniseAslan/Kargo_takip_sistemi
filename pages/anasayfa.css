@@ -1,0 +1,54 @@
+*{
+    background: #293775;
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: grid;
+    height: 100%;
+    place-items: center;
+    overflow: hidden;
+    height: 100vh;
+   
+}
+.header{
+    width: 100%;
+    position:sticky;
+    
+}
+.hero{
+
+    min-height: 100vh;
+    width: 100%;
+   background-image: url(/1_Kod/img/bg-dot.png),url(/1_Kod/img/bg-dot.png),url(/1_Kod/img/bg-bottom-hero.png);
+   background-repeat:no-repeat;
+   background-position: 10px 10px, bottom 400px right 15px, left 35% top 90% ;
+   background-size: auto, auto, 100% 25%;
+
+
+}
+.clearfix{
+    width: 600px;
+    height: 500px;
+    padding-left: 50px;
+    margin-top: 50px;
+}
+
+ .hero .row{
+    display: flex;
+    align-items: center;
+  
+    padding: 0 60px;
+    gap:30px;
+    justify-content: space-between;
+}
+.column h2,
+.column p{
+    color: aliceblue;
+   
+}
+
+.hero_img{
+    width: 250px;
+    height:150px;
+}
