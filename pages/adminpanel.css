@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+.header {
+  width: 100%;
+  position: sticky;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+.container {
+  position: absolute;
+  width: 350px;
+  height: 480px;
+
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  border-radius: 10px; /* Köşeleri yuvarlat */
+
+  text-align: center;
+  flex-direction: column;
+}
+
+.container .contactInfo {
+  z-index: 1;
+  position: absolute;
+  top: 40px;
+  width: 350px;
+  height: calc(100% - 80px);
+  background: linear-gradient(-135deg, #384692, #8f92a9);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+  padding: 40px;
+}
+
+.container .contactForm {
+  position: absolute;
+  padding: 70px 50px;
+  padding-left: 250px;
+  margin-left: 150px;
+  height: 650px;
+  width: calc(100% - 150px);
+  height: 100%;
+  background: #575d82;
+  border-radius: 10px;
+}
+
+.container-lg {
+  background: #8f92a9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.Form1 {
+  display: flex; /* Flexbox kullanımı */
+  justify-content: space-between; /* İki container arasındaki boşluğu ayarla */
+  align-items: flex-start; /* Yukarı hizalama */
+  gap: 20px; /* Aralarındaki mesafeyi ayarla */
+}
+
+.container-md,
+.container-lg {
+  flex: 1; /* Her iki container eşit alan kaplar */
+  padding: 10px; /* İç boşluk */
+  border: 1px solid #ccc; /* Çerçeve (isteğe bağlı) */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Gölgelendirme (isteğe bağlı) */
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+  background-color: #2e3b85;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.f-icon img {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+}
