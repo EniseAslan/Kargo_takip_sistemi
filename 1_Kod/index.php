@@ -1,97 +1,18 @@
 <!DOCTYPE html>
 <?php 
-include("config.php"); //VERİTABANI BAĞLANTISINI SAĞLAYAN KOD
+include("config.php");
 
-$takipKodu = @$_GET["c"];
-
-if(!$_GET) { //ANASAYFA OLMADIĞI İÇİN GEÇİCİ EKLENEN KOD
-    header("Location: /index.php?c=1");
+if(isset($_POST['gonder'])) {
+    $kod = $_POST['kod'];
+    header("Location:kargobilgisi.php?c=".$kod);
 }
-
-//KARGO BİLGİSİNİ VERİTABANINDAN ÇEKEN KOD
-$KargoBilgisi = $baglanti->prepare("select * from kargo_bilgisi where Takip_Kodu = ?");
-$KargoBilgisi->execute(array($takipKodu));
-$KargoBilgisiF = $KargoBilgisi->fetch();
-
-//KARGO TAKİP NUMARASI VERİTABANINDA EŞLEŞMEZSE ÇALIŞACAK KOD
-if(!$KargoBilgisiF) {
-    echo "Kargo takip numarası hatalı"; //HATA SAYFASI OLMADIĞI İÇİN GEÇİCİ EKLENEN KOD
-    die();
-}
-if($KargoBilgisiF) {
-    //KARGO BİLGİLERİNİN DEĞİŞKENLERE AKTARILDIĞI KISIM
-    $Alici_ID = $KargoBilgisiF["Alici_ID"];
-    $Gonderici_ID = $KargoBilgisiF["Gonderici_ID"];
-    $KargoDurumu = $KargoBilgisiF["Durum_Bilgisi"];
-    $TahminiTeslimTarihi = $KargoBilgisiF["Tahmini_Teslim_Tarihi"];
-    
-    //ALICI BİLGİLERİNİ VERİTABANINDAN ÇEKEN KOD
-    $AliciBilgisi = $baglanti->prepare("select * from alici where Alici_ID = ?");
-    $AliciBilgisi->execute(array($Alici_ID));
-    $AliciBilgisiF = $AliciBilgisi->fetch();
-    if($AliciBilgisiF) {
-        //ALICI BİLGİLERİNİN DEĞİŞKENLERE AKTARILDIĞI KISIM
-        $AliciAdSoyad = $AliciBilgisiF["Ad_Soyad"];
-        $AliciAdres = $AliciBilgisiF["Adres"];
-    }
-    
-    //GÖNDERİCİ BİLGİLERİNİ VERİTABANINDAN ÇEKEN KOD
-    $GondericiBilgisi = $baglanti->prepare("select * from gonderici where Gonderici_ID = ?");
-    $GondericiBilgisi->execute(array($Gonderici_ID));
-    $GondericiBilgisiF = $GondericiBilgisi->fetch();
-    if($GondericiBilgisiF) {
-        //GÖNDERİCİ BİLGİLERİNİN DEĞİŞKENE AKTARILDIĞI KISIM
-        $GondericiAdSoyad = $GondericiBilgisiF["Gonderici_Ad_Soyad"];
-    }
-
-    //RENK KODLARININ DEĞİŞKENLERE AKTARILDIĞI KISIM
-    $AtlananAdimRengi = "#2e3b85";
-    $GelinmeyenAdimRengi = "#717588";
-    $BulunanAdimRengi = "#b5093d";
-    
-    //KARGO DURUMLARIN RENKLERİNİN DEĞİŞKENLERE AKTARILDIĞI KISIM
-    $Durum1Rengi = "color:".$GelinmeyenAdimRengi;
-    $Durum2Rengi = "color:".$GelinmeyenAdimRengi;
-    $Durum3Rengi = "color:".$GelinmeyenAdimRengi;
-    $Durum4Rengi = "color:".$GelinmeyenAdimRengi;
-    $Durum5Rengi = "color:".$GelinmeyenAdimRengi;
-    
-    //KARGO DURUMLARININ RENKLERİNİN BELİRLENDİĞİ KOD
-    switch($KargoDurumu){
-        case 1:
-            $Durum1Rengi = "color:".$BulunanAdimRengi;
-            break;
-        case 2:
-            $Durum1Rengi = "color:".$AtlananAdimRengi;
-            $Durum2Rengi = "color:".$BulunanAdimRengi;
-            break;
-        case 3:
-            $Durum1Rengi = "color:".$AtlananAdimRengi;
-            $Durum2Rengi = "color:".$AtlananAdimRengi;
-            $Durum3Rengi = "color:".$BulunanAdimRengi;
-            break;
-        case 4:
-            $Durum1Rengi = "color:".$AtlananAdimRengi;
-            $Durum2Rengi = "color:".$AtlananAdimRengi;
-            $Durum3Rengi = "color:".$AtlananAdimRengi;
-            $Durum4Rengi = "color:".$BulunanAdimRengi;
-            break;
-        case 5:
-            $Durum1Rengi = "color:".$AtlananAdimRengi;
-            $Durum2Rengi = "color:".$AtlananAdimRengi;
-            $Durum3Rengi = "color:".$AtlananAdimRengi;
-            $Durum4Rengi = "color:".$AtlananAdimRengi;
-            $Durum5Rengi = "color:".$BulunanAdimRengi;
-    }
-}
-
 ?>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>KargonBizde</title>
-    <link rel="stylesheet" href="index.css" type="text/css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ana Sayfa</title>
+    <link rel="stylesheet" href="anasayfa.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -100,11 +21,11 @@ if($KargoBilgisiF) {
     />
   </head>
   <body>
-    <!--header-->
-    <div>
+    <!--Header -->
+    <div class="header">
       <nav class="navbar navbar-expand-lg" style="background-color: #293775">
         <div class="container-fluid">
-          <a class="navbar-brand" style="color: aliceblue" href="#"
+          <a class="navbar-brand" style="color: rgb(113, 119, 124)" href="index.php"
             >KargonBizde</a
           >
           <!--Header Kısmı-->
@@ -121,92 +42,74 @@ if($KargoBilgisiF) {
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#"
+              <a
+                class="nav-link active"
+                style="color: rgb(0, 0, 0)"
+                aria-current="page"
+                href="index.php"
                 >Ana Sayfa</a
+              >
+              <a
+                class="nav-link active"
+                style="color: rgb(0, 0, 0)"
+                aria-current="page"
+                href="admin.php"
+                >Admin</a
               >
             </div>
           </div>
         </div>
       </nav>
     </div>
-     <!--Kargo adres bilgisi ve durum takibi containerı-->
-    <div class="container">
-      <div class="content">
-        <div class=""><img src="img/resim.PNG" alt="resim" /></div>
-        <div class="header">
-          <p>KARGO ADRES BİLGİSİ VE GÖNDERİ DURUM TAKİBİ</p>
-          <br />
-           <!--Kargonun teslim durumuna göre değişen renk-->
-          <div class="column">
-          <div class="header-info">
-            <p style= <?php printf($Durum1Rengi) ?> >Kargo Firmasına Verildi</p>
-            <p style= <?php printf($Durum2Rengi) ?> >Sipariş Yolda</p>
-            <p style= <?php printf($Durum3Rengi) ?> >Teslimat Şubesinde</p>
-            <p style= <?php printf($Durum4Rengi) ?> >Kurye Dağıtımında</p>
-            <p style= <?php printf($Durum5Rengi) ?> >Teslim Edildi</p>
-            
-          </div>
-           <!--Kargo adres bilgisi containerı-->
-          <div class="header-info2">
-            <p>Adres:</p>
-            <p><?php printf($AliciAdres) ?></p>
-          </div>
-        </div>
-        </div>
-      </div>
-      <div class="content">
-        <div class="delivery-1">
-          <div class="info-section">
-            <div class="cargo-icon">
-              <img src="img/Cargo.png" alt="Kargo İkonu" />
-            </div>
- <!--Kargo Bilgisi-->
-            <div class="cargo-info">
-              <p>
-                Alıcı Adı Soyadı: <?php printf($AliciAdSoyad) ?> <br />Kargo Takip Numarası: <?php printf($takipKodu) ?> <br />------------------<br />Satıcı
-                Adı Soyadı: <?php printf($GondericiAdSoyad) ?>
-              </p>
+    <!--HeaderSonu-->
+    <!---->
+    <section class="hero">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col align-self-start">
+            <div class="clearfix">
+              <img
+                src="img/kargo.png"
+                class="col-md-6 float-md-end mb-3 ms-md-3"
+                alt="..."
+              />
+
+              <h2>
+                "KargonBizde ile kargonuz güvende! Takip kodunuzu girerek
+                kargonuzun nerede olduğunu anında öğrenin. Hızlı, güvenilir ve
+                kullanıcı dostu kargo takip hizmetimizle her adımda sizinleyiz.
+                Kargonuz bizimle güvende, yolculuğunu takip edin!"
+              </h2>
             </div>
           </div>
-          <div class="delivery-2">
-            <div class="delivery-info">
-              <div class="delivery-image">
-                <img src="img/image.png" alt="Teslim Görseli" />
+
+          <div class="col align-self-center">
+            <div class="input-field">
+              <div class="wrapper">
+                <div class="title">Kargo Takip Kodu</div>
+                <form action="" method="post">
+                  <div class="field">
+                    <input type="text" name="kod" required />
+                    <label>Takip Kodu</label>
+                  </div>
+                  <div class="field">
+                    <input type="submit" name="gonder" value="Giriş" />
+                  </div>
+                </form>
               </div>
             </div>
-
-            <div class="delivery-date">
-              <p>Tahmini Teslim Tarihi: <?php printf($TahminiTeslimTarihi) ?></p>
-            </div>
           </div>
         </div>
-        <div class="buttons-section">
-          <button>
-            <img src="img/chat (1).png" alt="Chat Icon" class="button-icon" />
-            Teslimat Adresini Güncelle
-          </button>
-          <button>
-            <img src="img/chat (1).png" alt="Chat Icon" class="button-icon" />
-            Öneri ve Şikayetler
-          </button>
-        </div>
       </div>
-    </div>
-
+    </section>
     <div class="footer">
       <!-- Sosyal medya-->
 
-      <a href="#" class="f-icon">
-        <img src="img/instagram (1).png" />
-        <img src="img/social-media (1) (1).png" />
-        <img src="img/social-media (2).png" />
-      </a>
+      <!-- <a href="#" class="f-icon">
+        <img src="/1_Kod/img/instagram (1).png" />
+        <img src="/1_Kod/img/social-media (1) (1).png" />
+        <img src="/1_Kod/img/social-media (2).png" />
+      </a> -->
     </div>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>
