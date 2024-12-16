@@ -1,54 +1,198 @@
-*{
-    background: #293775;
+/* Genel Ayarlar */
+* {
     margin: 0;
     padding: 0;
-}
-body{
+    box-sizing: border-box;
+    background: #293775;
+  }
+  
+  body {
     display: grid;
-    height: 100%;
+    height: 100vh;
     place-items: center;
     overflow: hidden;
-    height: 100vh;
-   
-}
-.header{
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Header */
+  .header {
     width: 100%;
-    position:sticky;
-    
-}
-.hero{
-
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #293775;
+  }
+  
+  /* Hero Bölümü */
+  .hero {
     min-height: 100vh;
     width: 100%;
-   background-image: url(/1_Kod/img/bg-dot.png),url(/1_Kod/img/bg-dot.png),url(/1_Kod/img/bg-bottom-hero.png);
-   background-repeat:no-repeat;
-   background-position: 10px 10px, bottom 400px right 15px, left 35% top 90% ;
-   background-size: auto, auto, 100% 25%;
-
-
-}
-.clearfix{
-    width: 600px;
-    height: 500px;
-    padding-left: 50px;
-    margin-top: 50px;
-}
-
- .hero .row{
+    background-image: 
+      url(/1_Kod/img/bg-dot.png), 
+      url(/1_Kod/img/bg-dot.png), 
+      url(/1_Kod/img/bg-bottom-hero.png);
+    background-repeat: no-repeat;
+    background-position: 10px 10px, bottom 400px right 15px, left 35% top 90%;
+    background-size: auto, auto, 100% 25%;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Görsel karartma efekti */
+    z-index: -1;
+  }
+  
+  .hero .row {
     display: flex;
     align-items: center;
-  
     padding: 0 60px;
-    gap:30px;
+    gap: 30px;
     justify-content: space-between;
-}
-.column h2,
-.column p{
+  }
+  
+  /* Metin ve Resim Alanı */
+  .clearfix {
+    max-width: 600px;
+    height: auto;
+    padding: 20px;
+    margin: 50px auto 0;
     color: aliceblue;
-   
-}
-
-.hero_img{
+  }
+  
+  .clearfix h2, .clearfix p {
+    color: aliceblue;
+  }
+  
+  /* Form Alanı */
+  .wrapper {
+    width: 380px;
+    margin-top: 100px;
+    border-radius: 15px;
+    border: 2px solid aliceblue;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .wrapper .title {
+    background: linear-gradient(-105deg, #2e3b85, #63698f);
+    color: aliceblue;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 15px 15px 0 0;
+  }
+  
+  .wrapper form {
+    padding: 10px 30px 50px 30px;
+  }
+  
+  .wrapper form .field {
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  .wrapper form .field input {
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+    border-radius: 25px;
+    border: 1px solid lightgray;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 17px;
+    color: aliceblue;
+    background-color: transparent;
+  }
+  
+  .wrapper form .field input:focus {
+    border-color: #63698f;
+  }
+  
+  .wrapper form .field input:valid ~ label,
+  .wrapper form .field input:focus ~ label {
+    top: 0%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #63698f;
+  }
+  
+  .wrapper form .field input[type="submit"] {
+    background: linear-gradient(-135deg, #2e3b85, #63698f);
+    color: aliceblue;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .wrapper form .field input[type="submit"]:hover {
+    transform: scale(1.05);
+    background: linear-gradient(-135deg, #63698f, #2e3b85);
+  }
+  
+  .wrapper form .field input[type="submit"]:active {
+    transform: scale(0.95);
+  }
+  
+  .wrapper form .field label {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    font-size: 17px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: #999;
+  }
+  
+  /* Hero Görsel Alanı */
+  .hero_img {
     width: 250px;
-    height:150px;
-}
+    height: 150px;
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+  
+    width: 100%;
+    background-color: #ffffff;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+  
+  }
+  
+  /* .f-icon img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+  } */
+  
+  
+@media (max-width: 768px) {
+    .hero .row {
+      flex-direction: column; 
+      align-items: center; 
+      text-align: center;
+    }
+  
+    .clearfix {
+      max-width: 90%; 
+      margin: 20px auto; 
+    }
+  
+    .wrapper {
+      width: 90%; 
+      margin: 20px auto; 
+    }
+  }
+  
+  
